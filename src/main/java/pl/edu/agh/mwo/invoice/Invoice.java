@@ -1,16 +1,23 @@
 package pl.edu.agh.mwo.invoice;
 
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.Random;
 
 import pl.edu.agh.mwo.invoice.product.Product;
 
 public class Invoice {
-	private Collection<Product> products;
+	//private Collection<Product> products;
 	private HashMap<Product, Integer> amout = new HashMap<Product, Integer>();
-	String number = "1234";
-
+	private final int number=iloscFaktur+1;
+	//static int[] numbers=new int[] {0,0,0,0,0,0,0,0,0,0};
+	static int iloscFaktur=0;
+	
+	public Invoice() {
+		
+		iloscFaktur++;
+	}
+	
 	public void addProduct(Product product) {
 		this.addProduct(product, 1);
 	}
@@ -45,7 +52,7 @@ public class Invoice {
 		return this.getNetPrice().add(this.getTax());
 	}
 
-	public String getNumber() {
+	public int getNumber() {
 		return this.number;
 	}
 }

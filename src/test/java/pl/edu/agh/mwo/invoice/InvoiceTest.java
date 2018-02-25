@@ -15,10 +15,12 @@ import pl.edu.agh.mwo.invoice.product.TaxFreeProduct;
 
 public class InvoiceTest {
 	private Invoice invoice;
+	private Invoice invoice2;
 
 	@Before
 	public void createEmptyInvoiceForTheTest() {
 		invoice = new Invoice();
+		invoice2 = new Invoice();
 	}
 
 	@Test
@@ -106,7 +108,29 @@ public class InvoiceTest {
 	}
 	
 	@Test
-	public void testNrFakturyExists() {
-		Assert.assertThat(invoice.getNumber(), Matchers.comparesEqualTo("1234"));
+	public void testInvoiceNrExists() {
+		//Assert.assertThat(invoice.getNumber(), Matchers.comparesEqualTo("1234"));
+		int number =invoice.getNumber();
+		Assert.assertThat(number, Matchers.greaterThan(0)); // uzywajac Matchera dostajemy lepszy opis bledu
+		//Assert.assertTrue(number>0);
 	}
+	
+	@Test
+	public void testInvoiceshaveDifferentNrs() {
+		int number =invoice.getNumber();
+		int number2 =invoice2.getNumber();
+		//Assert.assertTrue(number!=number2);
+		Assert.assertNotEquals(number, number2);
+	}
+	
+	@Test
+	public void testInvoicesDoesNotChangeNr() {
+		Assert.assertEquals(invoice.getNumber(), invoice.getNumber());
+	}
+	
+	@Test
+	public void testInvoicesNrIsIncreasing() {
+		Assert.assertThat(invoice2.getNumber()-invoice.getNumber(), Matchers.greaterThan(0));
+	}
+	
 }
