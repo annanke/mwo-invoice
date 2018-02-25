@@ -9,6 +9,7 @@ import pl.edu.agh.mwo.invoice.product.Product;
 public class Invoice {
 	private Collection<Product> products;
 	private HashMap<Product, Integer> amout = new HashMap<Product, Integer>();
+	String number = "1234";
 
 	public void addProduct(Product product) {
 		this.addProduct(product, 1);
@@ -42,5 +43,9 @@ public class Invoice {
 
 	public BigDecimal getTotal() {
 		return this.getNetPrice().add(this.getTax());
+	}
+
+	public String getNumber() {
+		return this.number;
 	}
 }
